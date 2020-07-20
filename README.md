@@ -12,3 +12,6 @@ This will also work with other attributes you may have added to your cart, just 
 **Simply add ```{%- include 'checkout-iao-shipping-method' -%}``` to your ```checkout.liquid``` layout file.**
 
 *If you do not have Shopify Plus, this solution will not help, sorry!*
+
+
+## Cart Shipping/Pickup option form - COMING SOON
