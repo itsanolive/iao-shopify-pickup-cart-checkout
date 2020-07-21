@@ -1,0 +1,42 @@
+<div class="iao-cart">
+{{ 'iao-cart.scss' | asset_url | stylesheet_tag }}
+<p class="iao-cart__select">
+  <label>Choose Your Delivery Method:</label>
+  <select required class="required" id="ShipMethod" name="attributes[ShipMethod]">
+    <option value="Shipping"{% if cart.attributes["ShipMethod"] == "Ship to your address" %} selected{% endif %}>Ship to your address</option>
+    <option value="Store Pickup"{% if cart.attributes["ShipMethod"] == "Store Pickup" %} selected{% endif %}>Ship to Store</option>
+  </select>
+</p>
+
+<div id="shipping" class="">
+  <input type="submit" name="checkout" class="cart__submit btn" value="{{ 'cart.general.checkout' | t }}">
+</div>
+
+<div id="pickup" class="">
+  <p>Info about your store pickup procedures.</p>
+  <p class="alert">Your shipping address will not be used, only the store selection you make here.</p>
+  <p class="cart-attribute__select">
+    <label>Select Store Pickup Location:</label>
+    <select required class="required" id="storepickup" name="attributes[StorePickup]">
+
+      {% comment %} DEFAULT OPTION NO VALUE {% endcomment %}
+      <option value="" selected disabled>Choose location</option>
+
+      {% comment %} STORE OPTIONS START {% endcomment %}
+      <option value="1"{% if cart.attributes["StorePickup"] == "Store 1" %} selected{% endif %}>Store 1</option>
+      <option value="2"{% if cart.attributes["StorePickup"] == "Store 2" %} selected{% endif %}>Store 2</option>
+      <option value="3"{% if cart.attributes["StorePickup"] == "Store 3" %} selected{% endif %}>Store 3</option>
+
+    </select>
+  </p>
+</div>
+
+<div id="storeInfo">
+
+</div>
+
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script type="text/javascript" src="{{ "iao-cart-shipping-options.js" | asset_url}}" async></script>
