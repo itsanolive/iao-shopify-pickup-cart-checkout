@@ -16,10 +16,43 @@ Based on cart attribute key and value, the script in the checkout snippet remove
 
 This will also work with other attributes you may have added to your cart, just change the `{{ checkout.attributes['ShipMethod'] }}` attribute name and the values being checked for in the script conditionals.
 
-## Installation:
+## Basic implementation:
 * **Add** all snippets files to your theme's snippet folder
 * **Add** all asset files into your theme's assets folder
-* **Edit** `cart.liquid`, `theme.liquid`, and `checkout.liquid` files using the included code sections. **Do not completely replace your theme.liquid or checkout.liquid files with the ones included in this repo.**
+* **Edit** `cart.liquid`, `theme.liquid`, and `checkout.liquid` files using the included code sections. **Do not completely replace your theme.liquid or checkout.liquid files with the ones included in this repo.** 
+
+## Implementation details:
+#### Cart
+Find the `input` or `button` with `type="submit" name="checkout"` and replace with `{%- include 'iao-cart-shipping-form' -%}` as specified in the `cart.liquid` in the templates folder. 
+
+*Depending on your theme, this may or may not actually be in the cart.liquid file. It may be in a section or snippet file.*
+
+#### Store Info
+To update or add your own location info, update the `option` elements within the #storepickup `select` element.
+	
+```<option value="STORE_ID"{% if cart.attributes["StorePickup"] == "STORE_NAME" %} selected{% endif %}>STORE_NAME</option>```
+
+&nbsp;&nbsp;&nbsp;&nbsp; Then head to the iao-cart-shipping-options.js and update the `storeInfo` object with the corresponding data as well as address, link if it has its own page on your site, etc.
+
+```
+var storeInfo = [
+    {
+        "id": "STORE_ID",
+        "name": "STORE_NAME",
+        "address": "1234 Main St, City, ST 12345",
+        "link": "/some/path/1"
+    }
+},
+```
+
+#### Checkout
+The `iao-checkout-shipping-method.liquid` snippet code assumes you have two shipping methods set up: "Ship to Store" as the free pickup option and "Standard Ground" as the regular shipping option. If you have additional shipping options, this code ignores them and they still show. But you could build in another conditional statement or change the existing ones to hide all shipping methods that do not match a value instead of only matching one value, depending on your use case.
+
+This also works if you have multiple "Standard Ground" shipping methods set up - one for under a certain price threshold, one for over, for example. Just make sure they have the same name and you're good to go.
+
+The snippet is based on the cart attribute `checkout.attributes['ShipMethod']` set up with cart snippets in this repo, but depending on your use case, you could change this as needed, just update the span id and textContent with the new liquid variable you want to use and the id selector in the script to match. 
+
+
 
 ## Contact
 If you need help with this implementation or have questions about making it work for your use case, please contact me at [info@obeaty.com](mailto:info@obeaty.com?subject=[GitHub]%20IAO%20Shopify%20Cart%20Shipping%20Question)
