@@ -56,3 +56,5 @@ The snippet is based on the cart attribute `checkout.attributes['ShipMethod']` s
 
 ## Contact
 If you need help with this implementation or have questions about making it work for your use case, please contact me at [info@obeaty.com](mailto:info@obeaty.com?subject=[GitHub]%20IAO%20Shopify%20Cart%20Shipping%20Question)
+
+# [CART DEMO](https://shopify.itsanolive.com/cart/add?id[]=35184199696545)
