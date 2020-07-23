@@ -1,0 +1,33 @@
+<span id="ShipMethod" style="display:none;">{{checkout.attributes['ShipMethod']}}</span>
+<script type="text/javascript">
+  const shipAttr = document.querySelector('#ShipMethod').textContent;
+  if (Shopify.Checkout.step == 'shipping_method') {
+    const shippingStep = document.querySelector('.step fieldset.content-box');
+    const shippingMethods = shippingStep.querySelectorAll('.content-box__row');
+
+    for (var i = 0; i < shippingMethods.length; i++) {
+      var shipMeth = shippingMethods[i].querySelector('label span.radio__label__primary');
+      if ( shipAttr ) {
+        if ( shipAttr == 'Shipping') {
+          if (shipMeth.dataset.shippingMethodLabelTitle == 'Ship to Store') {
+            shippingMethods[i].remove();
+            // console.log('removed Ship to Store option');
+          }
+        } else if ( shipAttr == null ) {
+          if (shipMeth.dataset.shippingMethodLabelTitle == 'Ship to Store') {
+            shippingMethods[i].remove();
+            // console.log('removed Ship to Store option');
+          }
+        } else if ( shipAttr == 'Store Pickup' ) {
+          if (shipMeth.dataset.shippingMethodLabelTitle == 'Standard Shipping') {
+            shippingMethods[i].remove();
+            // console.log('removed Standard Shipping option');
+          }
+        }
+      } else if (shipMeth.dataset.shippingMethodLabelTitle == 'Ship to Store') {
+        shippingMethods[i].remove();
+        // console.log('removed Ship to Store option');
+      }
+    }
+  }
+</script>

@@ -1,0 +1,5 @@
+{% comment %} INSERT AFTER MAIN STYLESHEET IS CALLED {% endcomment %}
+{%- if template.name contains 'cart' -%}
+  {% comment %} add iao cart styling support {% endcomment %}
+  {{ 'iao-cart.scss' | asset_url | stylesheet_tag }}
+{%- endif -%}
