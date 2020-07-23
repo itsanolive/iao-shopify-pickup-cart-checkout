@@ -1,15 +1,11 @@
-
 var CartShipping = function(){
   storeDiv();
   $("#pickup").hide();
-  $(".iao-cart__store-info").hide();
+  $(".store-info").hide();
 
- // $("#shipping").hide();
 
  function shipmethodChange(shipmethodValue){
-   // $("#pickup").hide();
-   console.log(shipmethodValue);
-
+   // console.log(shipmethodValue);
      switch(shipmethodValue){
       case 'Shipping':
        $("#shipping").show();
@@ -32,9 +28,8 @@ var CartShipping = function(){
    pickupChange($(this).val());
  });
 
-
  function pickupChange(pickupValue){
-   $(".iao-cart__store-info").hide();
+   $(".store-info").hide();
    $("#" + pickupValue).show();
    console.log("store div: ", $("#" + pickupValue));
  };
@@ -44,7 +39,7 @@ var CartShipping = function(){
      console.log('cont: ', cont);
    var html = '';
    for (var i = 0; i < storeInfo.length; i++) {
-     html += '<div id="' + storeInfo[i].id + '" class="iao-cart__store-info"><input type="submit" name="checkout" class="cart__submit btn" value="checkout"><br><h4>' + storeInfo[i].name + '</h4><p>' + storeInfo[i].address + '</p><p><a target="_blank" href="' + storeInfo[i].link + '">More info</a></p></div>';
+     html += '<div id="' + storeInfo[i].id + '" class="store-info"><input type="submit" name="checkout" class="cart__submit btn" value="checkout"><br><h4>' + storeInfo[i].name + '</h4><p>' + storeInfo[i].address + '</p><p><a target="_blank" href="' + storeInfo[i].link + '">More info</a></p></div>';
    }
    console.log('html: ', html);
    cont.innerHTML = html;
@@ -75,5 +70,4 @@ var storeInfo = [
 
 $(document).ready(function(){
   CartShipping();
-  // CartShipping.init();
 });

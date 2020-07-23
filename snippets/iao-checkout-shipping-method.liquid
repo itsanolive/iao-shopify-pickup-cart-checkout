@@ -7,15 +7,26 @@
 
     for (var i = 0; i < shippingMethods.length; i++) {
       var shipMeth = shippingMethods[i].querySelector('label span.radio__label__primary');
-      var radio = shippingMethods[i].querySelector('.radio__input .input-radio');
-      if ( shipAttr == 'Store Pickup' ) {
-        if (shipMeth.dataset.shippingMethodLabelTitle == 'Standard Shipping') {
-          shippingMethods[i].remove();
+      if ( shipAttr ) {
+        if ( shipAttr == 'Shipping') {
+          if (shipMeth.dataset.shippingMethodLabelTitle == 'Ship to Store') {
+            shippingMethods[i].remove();
+            // console.log('removed Ship to Store option');
+          }
+        } else if ( shipAttr == null ) {
+          if (shipMeth.dataset.shippingMethodLabelTitle == 'Ship to Store') {
+            shippingMethods[i].remove();
+            // console.log('removed Ship to Store option');
+          }
+        } else if ( shipAttr == 'Store Pickup' ) {
+          if (shipMeth.dataset.shippingMethodLabelTitle == 'Standard Shipping') {
+            shippingMethods[i].remove();
+            // console.log('removed Standard Shipping option');
+          }
         }
-      } else {
-        if (shipMeth.dataset.shippingMethodLabelTitle == 'Ship to Store') {
-          shippingMethods[i].remove();
-        }
+      } else if (shipMeth.dataset.shippingMethodLabelTitle == 'Ship to Store') {
+        shippingMethods[i].remove();
+        // console.log('removed Ship to Store option');
       }
     }
   }
